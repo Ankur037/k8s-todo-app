@@ -27,13 +27,17 @@ def create_item():
     if not item_name:
         return jsonify({"status": "error", "message": "itemName is required"}), 400
 
-    item = {"itemName": item_name, "itemDescription": item_description}
-    result = items_collection.insert_one(item)
+    # insert_one mutates this dict in-place, adding an ObjectId under "_id" —
+    # so we build the response separately instead of reusing this dict.
+    doc = {"itemName": item_name, "itemDescription": item_description}
+    result = items_collection.insert_one(doc)
+
+    response_item = {"itemName": item_name, "itemDescription": item_description}
 
     return jsonify({
         "status": "success",
         "id": str(result.inserted_id),
-        "item": item
+        "item": response_item
     }), 201
 
 
