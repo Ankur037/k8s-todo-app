@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do App</title>
+  <style>
+    body { font-family: sans-serif; max-width: 500px; margin: 60px auto; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+    button { margin-top: 20px; padding: 10px 20px; }
+    nav { margin-bottom: 20px; }
+    nav a { margin-right: 15px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Add Item</a>
+    <a href="/list">View Items</a>
+  </nav>
+  <h1>Add a To-Do Item</h1>
+  <form action="/submit" method="POST">
+    <label for="itemName">Item Name</label>
+    <input type="text" id="itemName" name="itemName" required>
+
+    <label for="itemDescription">Item Description</label>
+    <textarea id="itemDescription" name="itemDescription" rows="4" required></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
